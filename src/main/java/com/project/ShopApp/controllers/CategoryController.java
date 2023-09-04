@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("api/v1/categories")
 //@Validated
 public class CategoryController {
-    //Hiển thị tất cả các categories
+    //Hiển thị tất cả các categories xxx
     @GetMapping("") //http://localhost:8080/api/v1/categories?page=1&limit=10
     public ResponseEntity<String> getAllCategories(
         @RequestParam("page") int page,
