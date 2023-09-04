@@ -3,13 +3,17 @@ package com.project.ShopApp.controllers;
 import com.project.ShopApp.dtos.CategoryDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.service.annotation.DeleteExchange;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/categories")
-@Validated
+//@Validated
 public class CategoryController {
     //Hiển thị tất cả các categories
     @GetMapping("") //http://localhost:8080/api/v1/categories?page=1&limit=10
@@ -21,7 +25,14 @@ public class CategoryController {
 
     @PostMapping("")
     //Nếu tham số truyền vào là một đối tượng, lúc đó gọi là 1 Data Tranfer Object = Request Object
-    public ResponseEntity<String> insertCategory(@Valid  @RequestBody CategoryDTO categoryDTO){
+    public ResponseEntity<?> insertCategory(
+            @Valid  @RequestBody CategoryDTO categoryDTO, BindingResult result){
+        if (result.hasErrors()){
+           List<String> errorMessages = result.getFieldErrors()
+            .stream()
+                   .map(FieldError:: getDefaultMessage)
+                   .toList();
+        }
         return ResponseEntity.ok("This is insertCategory" + categoryDTO);
     }
 
