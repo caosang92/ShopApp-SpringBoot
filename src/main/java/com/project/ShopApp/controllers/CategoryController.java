@@ -18,31 +18,33 @@ public class CategoryController {
     //Hiển thị tất cả các categories
     @GetMapping("") //http://localhost:8080/api/v1/categories?page=1&limit=10
     public ResponseEntity<String> getAllCategories(
-        @RequestParam("page") int page,
-                @RequestParam("limit") int limit
-        ){return ResponseEntity.ok(String.format("getAllCategories with page = %d, limit = % d",page, limit ));
-}
+            @RequestParam("page") int page,
+            @RequestParam("limit") int limit
+    ) {
+        return ResponseEntity.ok(String.format("getAllCategories with page = %d, limit = % d", page, limit));
+    }
 
     @PostMapping("")
     //Nếu tham số truyền vào là một đối tượng, lúc đó gọi là 1 Data Tranfer Object = Request Object
     public ResponseEntity<?> insertCategory(
-            @Valid  @RequestBody CategoryDTO categoryDTO, BindingResult result){
-        if (result.hasErrors()){
-           List<String> errorMessages = result.getFieldErrors()
-            .stream()
-                   .map(FieldError:: getDefaultMessage)
-                   .toList();
+            @Valid @RequestBody CategoryDTO categoryDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            List<String> errorMessages = result.getFieldErrors()
+                    .stream()
+                    .map(FieldError::getDefaultMessage)
+                    .toList();
+            return ResponseEntity.badRequest().body(errorMessages);
         }
         return ResponseEntity.ok("This is insertCategory" + categoryDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateCategory(@PathVariable Long id){
+    public ResponseEntity<String> updateCategory(@PathVariable Long id) {
         return ResponseEntity.ok("Update Category with id=" + id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Long id){
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
         return ResponseEntity.ok("Delete Category with id=" + id);
     }
 }
