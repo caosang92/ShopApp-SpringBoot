@@ -9,6 +9,8 @@ import com.project.ShopApp.repositories.OrderRepository;
 import com.project.ShopApp.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -87,3 +89,4 @@ public class OrderService implements IOrderService{
         return orderRepository.findByUserId(userId);
     }
 }
+

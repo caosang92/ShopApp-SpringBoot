@@ -1,8 +1,9 @@
 package com.project.ShopApp.controllers;
 
-import com.project.ShopApp.components.LocalizationUtils;
-import com.project.ShopApp.dtos.*;
 import com.project.ShopApp.Models.User;
+import com.project.ShopApp.components.LocalizationUtils;
+import com.project.ShopApp.dtos.UserDTO;
+import com.project.ShopApp.dtos.UserLoginDTO;
 import com.project.ShopApp.responses.LoginResponse;
 import com.project.ShopApp.responses.RegisterResponse;
 import com.project.ShopApp.services.IUserService;

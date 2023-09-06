@@ -27,7 +27,7 @@ public class ProductService implements IProductService{
     @Override
     public Product createProduct(ProductDTO productDTO) throws DataNotFoundException {
         Category existingCategory = categoryRepository
-                .findById(Long.valueOf(productDTO.getCategoryId()))
+                .findById(productDTO.getCategoryId())
                 .orElseThrow(() ->
                         new DataNotFoundException(
                                 "Cannot find category with id: "+productDTO.getCategoryId()));
@@ -68,7 +68,7 @@ public class ProductService implements IProductService{
             //copy các thuộc tính từ DTO -> Product
             //Có thể sử dụng ModelMapper
             Category existingCategory = categoryRepository
-                    .findById(Long.valueOf(productDTO.getCategoryId()))
+                    .findById(productDTO.getCategoryId())
                     .orElseThrow(() ->
                             new DataNotFoundException(
                                     "Cannot find category with id: "+productDTO.getCategoryId()));
